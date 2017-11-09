@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "509704449846",
+    "firebase_url": "https://libros-d6227.firebaseio.com",
+    "project_id": "libros-d6227",
+    "storage_bucket": "libros-d6227.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:509704449846:android:8094286f45d12248",
+        "android_client_info": {
+          "package_name": "com.example.parimalmishra.libros"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "509704449846-53ces7s1f08gbk253ashuh5f7f5cengp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.parimalmishra.libros",
+            "certificate_hash": "b5e3a53885614866bb326b032bf40e3207f8e1e9"
+          }
+        },
+        {
+          "client_id": "509704449846-5dd0ejqv38ct34ekpg4gl1rtrtk2dq4q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAj0Kqw1gQAGyrk6yjE104AKgzqv3ANRk0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "509704449846-5dd0ejqv38ct34ekpg4gl1rtrtk2dq4q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
