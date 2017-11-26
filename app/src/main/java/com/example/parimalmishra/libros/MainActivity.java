@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void aboutus(View view) {
-        Intent i2 = new Intent(this,Aboutus.class);
+        Intent i2 = new Intent(this,Contactus.class);
         startActivity(i2);
     }
 }

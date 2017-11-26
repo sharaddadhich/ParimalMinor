@@ -6,12 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-public class Aboutus extends AppCompatActivity {
+public class Contactus extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_aboutus);
+        setContentView(R.layout.activity_contactus);
     }
 
     public void contactus(View view) {
@@ -22,8 +22,16 @@ public class Aboutus extends AppCompatActivity {
                 startActivity(i1);
                 break;
             case R.id.button4:
-                Intent i2 = new Intent(Intent.ACTION_VIEW, Uri.parse("http://mail.google.com"));
-                startActivity(i2);
+                String uriText =
+                        "mailto:mishra.parimal09@gmail.com" +
+                                "?subject=" + Uri.encode("Assistance Required.") +
+                                "&body=" + Uri.encode("");
+
+                Uri uri = Uri.parse(uriText);
+
+                Intent sendIntent = new Intent(Intent.ACTION_SENDTO);
+                sendIntent.setData(uri);
+                startActivity(Intent.createChooser(sendIntent, "Send email"));
                 break;
             case R.id.button5:
                 Intent i3 = new Intent(Intent.ACTION_VIEW, Uri.parse("geo:20.5937,78.9629"));

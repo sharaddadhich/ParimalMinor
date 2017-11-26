@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/mu_SignUpLogin"
+        android:title="SignUp/Login" >
+    </item>
+
+    <item
+        android:id="@+id/mu_SignOut"
+        android:title="Sign Out"
+        app:showAsAction="always"
+        android:icon="@drawable/logout">
+    </item>
+
+    <item
+        android:id="@+id/mu_ContactUs"
+        android:title="ContactUs">
+    </item>
+
+    <item
+        android:id="@+id/mu_AboutUs"
+        android:title="About Us" >
+    </item>
+
+
+
+</menu>
