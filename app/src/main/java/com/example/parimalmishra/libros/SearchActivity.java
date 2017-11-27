@@ -1,6 +1,8 @@
 package com.example.parimalmishra.libros;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -29,6 +31,7 @@ public class SearchActivity extends AppCompatActivity {
 
     EditText etSearch;
     Button btnSearch;
+    ProgressDialog progressDialog;
 
     RecyclerView rvResults;
 
@@ -97,11 +100,25 @@ public class SearchActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search);
         firebaseAuth = FirebaseAuth.getInstance();
+        progressDialog = new ProgressDialog(this);
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("Main");
         firebaseAuth.signInAnonymously();
-        rvadapter = new RvAdapter(new ArrayList<Items>(),this);
-
+        rvadapter = new RvAdapter(new ArrayList<Items>(), this, new onItemClick() {
+            @Override
+            public void onItemClickListner(String Url) {
+                if(Url.equals("Libros"))
+                {
+                    Intent i = new Intent(SearchActivity.this,ThankYouActivity.class);
+                    startActivity(i);
+                }
+                Intent i = new Intent(Intent.ACTION_VIEW);
+                i.setData(Uri.parse(Url));
+                startActivity(i);
+            }
+        });
+        progressDialog.setTitle("Loading Data....");
+        progressDialog.show();
         etSearch = (EditText) findViewById(R.id.et_Search);
         btnSearch = (Button) findViewById(R.id.btn_Search);
         rvResults = (RecyclerView) findViewById(R.id.rv_DisplayResults);
@@ -132,12 +149,17 @@ public class SearchActivity extends AppCompatActivity {
         });
 
 
+
+
         databaseReference.child("Ebay").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Items thisItem = dataSnapshot.getValue(Items.class);
+                thisItem.setFrom("Ebay");
                 Log.d("123123", "onChildAdded: " + thisItem.getExtract_data());
                 EItems.add(thisItem);
+                progressDialog.dismiss();
+                rvadapter.UpdateData(EItems);
             }
 
             @Override
@@ -164,8 +186,10 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Items thisItem = dataSnapshot.getValue(Items.class);
+                thisItem.setFrom("Flipkart");
                 Log.d("123123", "onChildAdded: " + thisItem.getExtract_data());
                 EItems.add(thisItem);
+                rvadapter.UpdateData(EItems);
             }
 
             @Override
@@ -192,8 +216,12 @@ public class SearchActivity extends AppCompatActivity {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Items thisItem = dataSnapshot.getValue(Items.class);
+                String url = "Libros";
+                thisItem.setUrl(url);
+                thisItem.setFrom("Libros");
                 Log.d("123123", "onChildAdded: " + thisItem.getExtract_data());
                 EItems.add(thisItem);
+                rvadapter.UpdateData(EItems);
             }
 
             @Override

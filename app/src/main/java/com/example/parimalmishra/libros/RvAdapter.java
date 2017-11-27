@@ -1,6 +1,7 @@
 package com.example.parimalmishra.libros;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -18,10 +19,11 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.RVViewHolder> {
 
     ArrayList<Items> theseItems;
     Context context;
-
-    public RvAdapter(ArrayList<Items> theseItems, Context context) {
+    onItemClick onItemClick;
+    public RvAdapter(ArrayList<Items> theseItems, Context context,onItemClick onItemClick) {
         this.theseItems = theseItems;
         this.context = context;
+        this.onItemClick = onItemClick;
     }
 
     @Override
@@ -37,10 +39,11 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.RVViewHolder> {
         holder.tvname.setText(thisItem.getExtract_data());
         holder.tvrating.setText(thisItem.getRating());
         holder.tvprice.setText(thisItem.getPrice());
+        holder.tvfrom.setText(thisItem.getFrom());
         holder.thisView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Uri.parse(thisItem.getUrl());
+                onItemClick.onItemClickListner(thisItem.getUrl());
             }
         });
     }
@@ -57,7 +60,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.RVViewHolder> {
     }
 
     class RVViewHolder extends RecyclerView.ViewHolder {
-        TextView tvname,tvprice,tvrating;
+        TextView tvname,tvprice,tvrating,tvfrom;
         View thisView;
         public RVViewHolder(View itemView) {
             super(itemView);
@@ -65,6 +68,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.RVViewHolder> {
             tvprice = (TextView) itemView.findViewById(R.id.tv_price);
             tvrating = (TextView) itemView.findViewById(R.id.tv_rating);
             thisView = itemView;
+            tvfrom = (TextView) itemView.findViewById(R.id.tv_from);
         }
     }
 }

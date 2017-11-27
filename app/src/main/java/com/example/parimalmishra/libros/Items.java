@@ -6,15 +6,16 @@ package com.example.parimalmishra.libros;
 
 public class Items {
 
-    String extract_data,price,rating,url;
+    String extract_data,price,rating,url,from;
 
     public Items(){}
 
-    public Items(String extract_data, String price, String rating, String url) {
+    public Items(String extract_data, String price, String rating, String url, String from) {
         this.extract_data = extract_data;
         this.price = price;
         this.rating = rating;
         this.url = url;
+        this.from = from;
     }
 
     public String getExtract_data() {
@@ -47,5 +48,13 @@ public class Items {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getFrom() {
+        return from;
+    }
+
+    public void setFrom(String from) {
+        this.from = from;
     }
 }
