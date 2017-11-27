@@ -61,6 +61,8 @@ public class Signup extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     saveUserinfo();
                                     progressDialog.dismiss();
+                                    Intent thisIntent = new Intent(Signup.this,SearchActivity.class);
+                                    startActivity(thisIntent);
                                 }
                             });
 
